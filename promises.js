@@ -1,59 +1,45 @@
 
 // 1.
-var p = Promise.resolve('Hello Promise!');
-p.then(function(message) {
-  console.log(message);
-  return 'Hi';
-});
+// let p = Promise.resolve("Hello Promise!");
 
+// p.then((message) => {
+//  console.log(message);
+//  return message;
+// })
+//  .then((message) => {
+//    console.log(message);
+//  });
 
+// let testEven = new Promise((resolve, reject) => {
+//  if (Date.now() % 2 === 0 ) {
+//    resolve('Even');
+//  } else {
+//    reject('Odd');
+//  }
+//});
 
-// 2.
-var testEven = new Promise(function(resolve, reject) {
-  if (Date.now() % 2 === 0) {
-    resolve('Even');
-  } else {
-    reject('Odd');
-  }
-});
+//testEven.then((result) => {
+//  console.log(result);
+//}, (err) => {
+//  console.log(err);
+//});
 
-testEven.then(function(result) {
+testEven.then((result) => {
   console.log(result);
-}, function(err) {
-  console.error(err);
-});
+  throw "Trigger the catch";
+})
+  .catch((err) => {
+  console.log(err);
+ });
 
-
-testEven
-  .then(function(result) {
-    console.log(result);
-    throw "Boom!";
-  })
-  .catch(function(err) {
-    console.error(err);
-  });
-
-
-
-
-// 3.
-
-var nums = [1, 2, 3, 4];
-nums = nums.map(function(i) {
+let num = [1,2,3,4];
+nums = num.map((i) => {
   return Promise.resolve(i + 1);
 });
 
 Promise.all(nums)
-  .then(function(results) {
-    console.log(results);
-  });
-
-
-
-
-
-
-
-
+ .then((results) => {
+   console.log(results);
+});
 
 
